@@ -1,0 +1,3 @@
+rootProject.name = 'restaurante-popular'
+
+include ':delivery', ':entity',':usecase', ':data_db'
