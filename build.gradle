@@ -57,11 +57,11 @@ subprojects {
             spring_boot            : [
                     "org.springframework.boot:spring-boot-starter-actuator:${springboot_version}",
                     "org.springframework.boot:spring-boot-starter-logging:${springboot_version}",
-                    "org.springframework.cloud:spring-cloud-starter-oauth2:${springboot_version}",
                     "org.springframework.boot:spring-boot-starter-security:${springboot_version}"
             ],
 
             rest                   : [
+                    "javax.xml.bind:jaxb-api:2.3.0",
                     "org.springframework.boot:spring-boot-starter-data-rest:2.1.7.RELEASE"
             ],
 
