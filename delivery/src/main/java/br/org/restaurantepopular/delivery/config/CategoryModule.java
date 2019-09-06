@@ -2,32 +2,12 @@ package br.org.restaurantepopular.delivery.config;
 
 import br.org.restaurantepopular.data_db.repository.category.CategoryDAO;
 import br.org.restaurantepopular.data_db.repository.category.CategoryRepository;
-import br.org.restaurantepopular.delivery.rest.impl.CategoryResource;
 import br.org.restaurantepopular.usecase.category.*;
-import br.org.restaurantepopular.usecase.core.IUseCaseExecutor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class CategoryModule {
-
-    @Bean
-    public CategoryResource categoryResource(
-            IUseCaseExecutor useCaseExecutor,
-            GetCategoryByIdUseCase getCategoryByIdUseCase,
-            CreateCategoryUseCase createCategoryUseCase,
-            UpdateCategoryUseCase updateCategoryUseCase,
-            ListCategoriesUseCase listCategoriesUseCase,
-            DeleteCategoryUseCase deleteCategoryUseCase) {
-        return new CategoryResource(
-                useCaseExecutor,
-                getCategoryByIdUseCase,
-                createCategoryUseCase,
-                updateCategoryUseCase,
-                listCategoriesUseCase,
-                deleteCategoryUseCase
-        );
-    }
 
     @Bean
     public GetCategoryByIdUseCase getCategoryByIdUseCase(

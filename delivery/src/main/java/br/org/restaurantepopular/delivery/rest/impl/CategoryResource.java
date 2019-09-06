@@ -11,34 +11,28 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.CompletionStage;
 import java.util.stream.Collectors;
 
+@RestController
 public class CategoryResource implements ICategoryResource {
 
-    private final IUseCaseExecutor useCaseExecutor;
-    private final GetCategoryByIdUseCase getCategoryByIdUseCase;
-    private final CreateCategoryUseCase createCategoryUseCase;
-    private final UpdateCategoryUseCase updateCategoryUseCase;
-    private final ListCategoriesUseCase listCategoriesUseCase;
-    private final DeleteCategoryUseCase deleteCategoryUseCase;
-
-    public CategoryResource(IUseCaseExecutor useCaseExecutor,
-                            GetCategoryByIdUseCase getCategoryByIdUseCase,
-                            CreateCategoryUseCase createCategoryUseCase,
-                            UpdateCategoryUseCase updateCategoryUseCase,
-                            ListCategoriesUseCase listCategoriesUseCase,
-                            DeleteCategoryUseCase deleteCategoryUseCase) {
-        this.useCaseExecutor = useCaseExecutor;
-        this.getCategoryByIdUseCase = getCategoryByIdUseCase;
-        this.createCategoryUseCase = createCategoryUseCase;
-        this.updateCategoryUseCase = updateCategoryUseCase;
-        this.listCategoriesUseCase = listCategoriesUseCase;
-        this.deleteCategoryUseCase = deleteCategoryUseCase;
-    }
+    @Autowired
+    private IUseCaseExecutor useCaseExecutor;
+    @Autowired
+    private GetCategoryByIdUseCase getCategoryByIdUseCase;
+    @Autowired
+    private CreateCategoryUseCase createCategoryUseCase;
+    @Autowired
+    private UpdateCategoryUseCase updateCategoryUseCase;
+    @Autowired
+    private ListCategoriesUseCase listCategoriesUseCase;
+    @Autowired
+    private DeleteCategoryUseCase deleteCategoryUseCase;
 
     @Override
     public CompletionStage<CategoryDTO> getCategoryById(@PathVariable("id") String id) {
