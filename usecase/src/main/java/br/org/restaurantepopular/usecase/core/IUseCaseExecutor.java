@@ -1,5 +1,6 @@
 package br.org.restaurantepopular.usecase.core;
 
+import java.util.Optional;
 import java.util.concurrent.CompletionStage;
 import java.util.function.Function;
 
@@ -19,12 +20,12 @@ public interface IUseCaseExecutor {
     }
 
     default <ResponseDTO, Response> CompletionStage<ResponseDTO> invoke(
-            IUseCase<Void, Response> useCase,
+            IUseCase<Optional, Response> useCase,
             Function<Response, ResponseDTO> responseConverter) {
-        return invoke(useCase, null, null, responseConverter);
+        return invoke(useCase, null, ((Optional requestDTO) -> Optional.empty()), responseConverter);
     }
 
-    default CompletionStage invoke(IUseCase<Void, Void> useCase) {
+    default CompletionStage invoke(IUseCase<Optional, Optional> useCase) {
         return invoke(useCase, null);
     }
 }

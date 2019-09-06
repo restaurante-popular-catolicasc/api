@@ -4,6 +4,7 @@ apply plugin: 'io.spring.dependency-management'
 dependencies {
     implementation project(':data_db')
     implementation project(':usecase')
+    implementation project(':entity')
     implementation libs.rest
     implementation libs.spring_boot
     implementation libs.log
