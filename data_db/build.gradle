@@ -1,9 +1,9 @@
 apply plugin: 'java-library'
-apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
 
 dependencies {
     implementation project(":usecase")
+    implementation project(":entity")
     implementation libs.database_initialisation
 
     testImplementation libs.unit_tests

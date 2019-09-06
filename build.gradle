@@ -1,6 +1,6 @@
 buildscript {
     ext {
-        springBootVersion = '2.0.6.RELEASE'
+        springBootVersion = '2.1.7.RELEASE'
     }
     repositories {
         mavenCentral()
@@ -27,7 +27,7 @@ subprojects {
 
     ext {
         spring_version = "4.2.5.RELEASE"
-        springboot_version = "2.0.6.RELEASE"
+        springboot_version = "2.1.7.RELEASE"
     }
 
     ext.libs = [
@@ -57,11 +57,11 @@ subprojects {
             spring_boot            : [
                     "org.springframework.boot:spring-boot-starter-actuator:${springboot_version}",
                     "org.springframework.boot:spring-boot-starter-logging:${springboot_version}",
-                    "org.springframework.cloud:spring-cloud-starter-oauth2:${springboot_version}",
                     "org.springframework.boot:spring-boot-starter-security:${springboot_version}"
             ],
 
             rest                   : [
+                    "javax.xml.bind:jaxb-api:2.3.0",
                     "org.springframework.boot:spring-boot-starter-data-rest:2.1.7.RELEASE"
             ],
 
@@ -69,7 +69,7 @@ subprojects {
                     "org.springframework.boot:spring-boot-starter-data-jpa:${springboot_version}",
                     "org.springframework.boot:spring-boot-starter-data-rest:${springboot_version}",
                     "org.springframework.boot:spring-boot-starter-jdbc:${springboot_version}",
-                    "com.h2database:h2:1.4.196"
+                    "com.h2database:h2:1.4.199",
             ],
 
             string_utils           : [
