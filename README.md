@@ -31,8 +31,10 @@ Gradle 5.4.1
 
 `./gradlew clean build`
 
-
 ### Run Application
 
-`java -jar delivery/build/libs/delivery-0.0.1-SNAPSHOT.jar
-`
+`java -jar delivery/build/libs/delivery-0.0.1-SNAPSHOT.jar`
+
+## Contribuindo
+
+Para visualizar o guia de contribuição, [clique aqui](.github/CONTRIBUTING.md)
