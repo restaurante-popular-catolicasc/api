@@ -36,12 +36,12 @@ Gradle 5.4.1
 ###### Compilar 
 `./gradlew clean build`
 
-######Run
+###### Run
 `java -jar delivery/build/libs/delivery-0.0.1-SNAPSHOT.jar`
 
 <hr>
 
-###Pelo intellij IDEA:
+### Pelo intellij IDEA:
 
 1 - Após abrir o editor, clique em "Import Project"
 
