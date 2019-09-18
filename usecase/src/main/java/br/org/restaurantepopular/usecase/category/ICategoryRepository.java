@@ -7,7 +7,7 @@ import java.util.Optional;
 
 public interface ICategoryRepository {
 
-    void save(Category category);
+    Optional<Category> save(Category category);
 
     void update(Category category);
 

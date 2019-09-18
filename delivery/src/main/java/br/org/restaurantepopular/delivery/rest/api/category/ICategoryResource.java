@@ -19,7 +19,7 @@ public interface ICategoryResource {
     @PostMapping(
             produces = {MediaType.APPLICATION_JSON_VALUE},
             consumes = {MediaType.APPLICATION_JSON_VALUE})
-    CompletionStage<ResponseEntity> createCategory(@RequestBody CategoryDTO categoryDTO);
+    CompletionStage createCategory(@RequestBody CategoryDTO categoryDTO);
 
     @PutMapping(
             produces = {MediaType.APPLICATION_JSON_VALUE},
