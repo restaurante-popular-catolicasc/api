@@ -9,5 +9,6 @@ dependencies {
     implementation libs.spring_boot
     implementation libs.log
 
+    testImplementation libs.integration_test
     testImplementation libs.unit_tests
 }
