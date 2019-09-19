@@ -1,5 +1,7 @@
 package br.org.restaurantepopular.entity;
 
+import java.util.Objects;
+
 public class Category {
 
     private String id;
@@ -72,5 +74,20 @@ public class Category {
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Category category = (Category) o;
+        return Objects.equals(getId(), category.getId()) &&
+                Objects.equals(getName(), category.getName()) &&
+                Objects.equals(getDescription(), category.getDescription());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getId(), getName(), getDescription());
     }
 }

@@ -6,7 +6,7 @@ import br.org.restaurantepopular.usecase.core.exception.ValidationException;
 
 import java.util.Optional;
 
-public class CreateCategoryUseCase implements IUseCase<Category, Optional> {
+public class CreateCategoryUseCase implements IUseCase<Category, Optional<Category>> {
 
     private final ICategoryRepository categoryRepository;
 
@@ -15,13 +15,12 @@ public class CreateCategoryUseCase implements IUseCase<Category, Optional> {
     }
 
     @Override
-    public Optional execute(Category category) {
+    public Optional<Category> execute(Category category) {
         if (category.getName() == null || category.getName().isBlank() || category.getName().isEmpty())
             throw new ValidationException("Category name should not be empty");
         if (category.getDescription() == null || category.getDescription().isBlank() || category.getDescription().isEmpty())
             throw new ValidationException("Category description should not be empty");
 
-        categoryRepository.save(category);
-        return Optional.empty();
+        return categoryRepository.save(category);
     }
 }
