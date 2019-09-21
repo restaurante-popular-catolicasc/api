@@ -1,11 +1,12 @@
 package br.org.restaurantepopular.data_db.repository.category;
 
+import br.org.restaurantepopular.data_db.entity.CategoryEntity;
 import br.org.restaurantepopular.data_db.mapper.CategoryEntityMapper;
 import br.org.restaurantepopular.entity.Category;
 import br.org.restaurantepopular.usecase.category.ICategoryRepository;
 import br.org.restaurantepopular.usecase.core.exception.NotFoundException;
 
-import  java.util.List;
+import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -18,8 +19,9 @@ public class CategoryRepository implements ICategoryRepository {
     }
 
     @Override
-    public void save(Category category) {
-        categoryDAO.save(CategoryEntityMapper.toCategoryEntity(category));
+    public Optional<Category> save(Category category) {
+        CategoryEntity entity = categoryDAO.save(CategoryEntityMapper.toCategoryEntity(category));
+        return Optional.of(CategoryEntityMapper.toCategory(entity));
     }
 
     @Override

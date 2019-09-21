@@ -51,7 +51,7 @@ public class CategoryResource implements ICategoryResource {
                 createCategoryUseCase,
                 categoryDTO,
                 CategoryMapper::toCategory,
-                (Optional v) -> new ResponseEntity(HttpStatus.CREATED)
+                (Optional<Category> v) -> new ResponseEntity(HttpStatus.CREATED)
         );
     }
 
