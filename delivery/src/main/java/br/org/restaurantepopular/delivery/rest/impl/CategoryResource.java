@@ -21,18 +21,22 @@ import java.util.stream.Collectors;
 @RestController
 public class CategoryResource implements ICategoryResource {
 
+    private final IUseCaseExecutor useCaseExecutor;
+    private final GetCategoryByIdUseCase getCategoryByIdUseCase;
+    private final CreateCategoryUseCase createCategoryUseCase;
+    private final UpdateCategoryUseCase updateCategoryUseCase;
+    private final ListCategoriesUseCase listCategoriesUseCase;
+    private final DeleteCategoryUseCase deleteCategoryUseCase;
+
     @Autowired
-    private IUseCaseExecutor useCaseExecutor;
-    @Autowired
-    private GetCategoryByIdUseCase getCategoryByIdUseCase;
-    @Autowired
-    private CreateCategoryUseCase createCategoryUseCase;
-    @Autowired
-    private UpdateCategoryUseCase updateCategoryUseCase;
-    @Autowired
-    private ListCategoriesUseCase listCategoriesUseCase;
-    @Autowired
-    private DeleteCategoryUseCase deleteCategoryUseCase;
+    public CategoryResource(IUseCaseExecutor useCaseExecutor, GetCategoryByIdUseCase getCategoryByIdUseCase, CreateCategoryUseCase createCategoryUseCase, UpdateCategoryUseCase updateCategoryUseCase, ListCategoriesUseCase listCategoriesUseCase, DeleteCategoryUseCase deleteCategoryUseCase) {
+        this.useCaseExecutor = useCaseExecutor;
+        this.getCategoryByIdUseCase = getCategoryByIdUseCase;
+        this.createCategoryUseCase = createCategoryUseCase;
+        this.updateCategoryUseCase = updateCategoryUseCase;
+        this.listCategoriesUseCase = listCategoriesUseCase;
+        this.deleteCategoryUseCase = deleteCategoryUseCase;
+    }
 
     @Override
     public CompletionStage<CategoryDTO> getCategoryById(@PathVariable("id") String id) {
@@ -46,12 +50,16 @@ public class CategoryResource implements ICategoryResource {
     }
 
     @Override
-    public CompletionStage<ResponseEntity> createCategory(@RequestBody CategoryDTO categoryDTO) {
+    public CompletionStage<ResponseEntity<CategoryDTO>> createCategory(@RequestBody CategoryDTO categoryDTO) {
         return useCaseExecutor.invoke(
                 createCategoryUseCase,
                 categoryDTO,
                 CategoryMapper::toCategory,
-                (Optional v) -> new ResponseEntity(HttpStatus.CREATED)
+                (Optional<Category> category) ->
+                        new ResponseEntity<>(
+                                category.map(CategoryMapper::toCategoryDTO).get(),
+                                HttpStatus.CREATED
+                        )
         );
     }
 
@@ -74,7 +82,6 @@ public class CategoryResource implements ICategoryResource {
                                 .stream()
                                 .map(CategoryMapper::toCategoryDTO)
                                 .collect(Collectors.toList())
-
         );
     }
 

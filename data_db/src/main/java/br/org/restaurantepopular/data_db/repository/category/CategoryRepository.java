@@ -5,7 +5,7 @@ import br.org.restaurantepopular.entity.Category;
 import br.org.restaurantepopular.usecase.category.ICategoryRepository;
 import br.org.restaurantepopular.usecase.core.exception.NotFoundException;
 
-import  java.util.List;
+import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -18,8 +18,10 @@ public class CategoryRepository implements ICategoryRepository {
     }
 
     @Override
-    public void save(Category category) {
-        categoryDAO.save(CategoryEntityMapper.toCategoryEntity(category));
+    public Optional<Category> save(Category category) {
+        return Optional.ofNullable(CategoryEntityMapper.toCategory(
+                categoryDAO.save(CategoryEntityMapper.toCategoryEntity(category))
+        ));
     }
 
     @Override
@@ -40,10 +42,11 @@ public class CategoryRepository implements ICategoryRepository {
     }
 
     @Override
-    public Optional<Category> findById(String id) {
-        return categoryDAO
-                .findById(id)
-                .map(CategoryEntityMapper::toCategory);
+    public Optional<Category> findById(String id) throws NotFoundException {
+        var categoryOptional = categoryDAO.findById(id).map(CategoryEntityMapper::toCategory);
+        if (categoryOptional.isEmpty())
+            throw new NotFoundException(String.format("Not found a category with this %s ID", id));
+        return categoryOptional;
     }
 
     @Override
