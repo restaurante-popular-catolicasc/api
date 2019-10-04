@@ -43,7 +43,8 @@ jobs:
       - codecov/upload:
           file: {{ coverage_report_filepath }}
   tests:
-    - run: gradle test
+    steps:
+      - run: gradle test
   deploy:
     #deploy
 
