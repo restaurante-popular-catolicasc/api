@@ -3,6 +3,12 @@
     <a href="https://github.com/restaurante-popular-catolicasc/api/issues">
         <img alt="GitHub issues" src="https://img.shields.io/github/issues/restaurante-popular-catolicasc/api">
     </a>
+    <a href="ttps://circleci.com/gh/restaurante-popular-catolicasc/api">
+        <img alt="Circle CI" src="https://circleci.com/gh/restaurante-popular-catolicasc/api/tree/master.svg?style=svg">
+    </a>
+    <a href="https://codecov.io/gh/restaurante-popular-catolicasc/api">
+        <img alt="Codecov" src="https://codecov.io/gh/restaurante-popular-catolicasc/api/branch/master/graph/badge.svg">
+    </a>
 </p>
 
 ### Pré-requisitos
