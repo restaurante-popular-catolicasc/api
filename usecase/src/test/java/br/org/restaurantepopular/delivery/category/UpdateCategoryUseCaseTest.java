@@ -9,10 +9,8 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-
 import java.util.Optional;
 import java.util.UUID;
-
 import static junit.framework.TestCase.assertEquals;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.doThrow;

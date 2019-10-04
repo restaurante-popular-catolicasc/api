@@ -8,9 +8,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-
 import java.util.Optional;
-
 import static org.mockito.Mockito.when;
 import static junit.framework.TestCase.*;
 
@@ -18,7 +16,6 @@ public class CreateCategoryUseCaseTest {
 
     @Mock
     private ICategoryRepository categoryRepository;
-
     private CreateCategoryUseCase createCategoryUseCase;
 
     @Before

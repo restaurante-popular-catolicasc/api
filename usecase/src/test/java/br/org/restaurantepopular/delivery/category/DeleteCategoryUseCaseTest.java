@@ -7,9 +7,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-
 import java.util.Optional;
-
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.doThrow;
 import static junit.framework.TestCase.*;
