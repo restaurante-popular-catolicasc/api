@@ -53,6 +53,7 @@ public class CategoryRepository implements ICategoryRepository {
     public void delete(String id) {
         if (!categoryDAO.existsById(id))
             throw new NotFoundException(String.format("Not found a category with this %s ID", id));
+
         categoryDAO.deleteById(id);
     }
 }

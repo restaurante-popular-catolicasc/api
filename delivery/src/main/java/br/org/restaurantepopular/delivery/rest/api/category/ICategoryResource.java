@@ -8,7 +8,7 @@ import java.util.concurrent.CompletionStage;
 
 @RestController
 @RequestMapping("/categories")
-    public interface ICategoryResource {
+public interface ICategoryResource {
 
     @GetMapping(
             value = "/{id}",

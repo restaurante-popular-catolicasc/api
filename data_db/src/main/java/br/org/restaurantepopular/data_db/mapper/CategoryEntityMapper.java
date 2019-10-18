@@ -19,5 +19,6 @@ public class CategoryEntityMapper {
                 .name(categoryEntity.getName())
                 .description(categoryEntity.getDescription())
                 .build();
+
     }
 }
