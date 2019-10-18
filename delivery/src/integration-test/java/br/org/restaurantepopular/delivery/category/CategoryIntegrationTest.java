@@ -11,7 +11,7 @@ import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.core.env.Environment;
 import org.springframework.http.*;
 import org.springframework.test.context.junit4.SpringRunner;
-import java.util.List;j
+import java.util.List;
 import static junit.framework.TestCase.*;
 
 @RunWith(SpringRunner.class)
@@ -99,7 +99,7 @@ public class CategoryIntegrationTest {
     }
 
     @Test
-    public void shouldReturn404_whenTryingToDeleteNonexistentCategory_byID() {
+    public void shouldReturn404_whenTryingToDeleteNoneExistentCategory_byID() {
         var deleteResponse = deleteCategory("INVALID ID", Void.class);
 
         assertEquals(HttpStatus.NOT_FOUND, deleteResponse.getStatusCode());
