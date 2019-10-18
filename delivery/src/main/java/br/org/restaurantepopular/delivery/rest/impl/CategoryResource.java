@@ -50,7 +50,7 @@ public class CategoryResource implements ICategoryResource {
     }
 
     @Override
-    public CompletionStage<ResponseEntity> createCategory(@RequestBody CategoryDTO categoryDTO) {
+    public CompletionStage<ResponseEntity<CategoryDTO>> createCategory(@RequestBody CategoryDTO categoryDTO) {
         return useCaseExecutor.invoke(
                 createCategoryUseCase,
                 categoryDTO,

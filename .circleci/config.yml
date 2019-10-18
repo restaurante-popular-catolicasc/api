@@ -32,4 +32,3 @@ workflows:
       - tests:
           requires:
             - build
->>>>>>>>> Temporary merge branch 2
