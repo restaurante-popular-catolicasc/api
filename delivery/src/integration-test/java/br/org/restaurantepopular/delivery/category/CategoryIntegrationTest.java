@@ -11,9 +11,7 @@ import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.core.env.Environment;
 import org.springframework.http.*;
 import org.springframework.test.context.junit4.SpringRunner;
-
 import java.util.List;
-
 import static junit.framework.TestCase.*;
 
 @RunWith(SpringRunner.class)
@@ -88,6 +86,27 @@ public class CategoryIntegrationTest {
         assertEquals(HttpStatus.OK, retrieveResponse.getStatusCode());
         assertNotNull(responseDTO);
         assertEquals(2, responseDTO.size());
+    }
+
+    @Test
+    public void shouldReturn204_whenTryingToDeleteExistentCategory_byID() {
+        var createResponse = createCategory(null, "Feijão", "Feijão carioca", CategoryDTO.class);
+        var categoryID = createResponse.getBody().getId();
+
+        var deleteResponse = deleteCategory(categoryID, Void.class);
+
+        assertEquals(HttpStatus.NO_CONTENT, deleteResponse.getStatusCode());
+    }
+
+    @Test
+    public void shouldReturn404_whenTryingToDeleteNoneExistentCategory_byID() {
+        var deleteResponse = deleteCategory("INVALID ID", Void.class);
+
+        assertEquals(HttpStatus.NOT_FOUND, deleteResponse.getStatusCode());
+    }
+
+    private <T> ResponseEntity<T> deleteCategory(String id, Class<T> typeKey) {
+        return restTemplate.exchange(serverURL + "/categories/" + id, HttpMethod.DELETE, requestEntity, typeKey);
     }
 
     private <T> ResponseEntity<T> retrieveCategory(String id, Class<T> typeKey) {
