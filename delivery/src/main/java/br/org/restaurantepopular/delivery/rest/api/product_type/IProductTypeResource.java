@@ -14,23 +14,23 @@ public interface IProductTypeResource {
             value = "/{id}",
             produces = {MediaType.APPLICATION_JSON_VALUE},
             consumes = {MediaType.APPLICATION_JSON_VALUE})
-    CompletionStage<ProductTypeDTO> getTypeById(@PathVariable("id") String id);
+    CompletionStage<ProductTypeDTO> getProductTypeById(@PathVariable("id") String id);
 
     @PostMapping(
             produces = {MediaType.APPLICATION_JSON_VALUE},
             consumes = {MediaType.APPLICATION_JSON_VALUE})
-    CompletionStage<ResponseEntity> createType(@RequestBody ProductTypeDTO productTypeDTO);
+    CompletionStage createProductType(@RequestBody ProductTypeDTO productTypeDTO);
 
     @PutMapping(
             produces = {MediaType.APPLICATION_JSON_VALUE},
             consumes = {MediaType.APPLICATION_JSON_VALUE})
-    CompletionStage<ResponseEntity> updateType(@RequestBody ProductTypeDTO productTypeDTO);
+    CompletionStage<ResponseEntity> updateProductType(@RequestBody ProductTypeDTO productTypeDTO);
 
     @GetMapping(
             produces = {MediaType.APPLICATION_JSON_VALUE},
             consumes = {MediaType.APPLICATION_JSON_VALUE})
-    CompletionStage<List<ProductTypeDTO>> listTypes();
+    CompletionStage<List<ProductTypeDTO>> listProductTypes();
 
     @DeleteMapping(value = "/{id}")
-    CompletionStage<ResponseEntity> deleteType(@PathVariable("id") String id);
+    CompletionStage<ResponseEntity> deleteProductType(@PathVariable("id") String id);
 }
