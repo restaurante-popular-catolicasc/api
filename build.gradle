@@ -3,13 +3,13 @@ buildscript {
         springBootVersion = '2.1.7.RELEASE'
     }
     repositories {
+        jcenter()
         mavenCentral()
     }
     dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
     }
 }
-
 
 subprojects {
     apply plugin: 'java'
@@ -30,15 +30,6 @@ subprojects {
         spring_version = "4.2.5.RELEASE"
         springboot_version = "2.1.7.RELEASE"
     }
-
-    jacocoTestReport {
-        reports {
-            xml.enabled true
-            html.enabled false
-        }
-    }
-
-    check.dependsOn jacocoTestReport
 
     ext.libs = [
             unit_tests             : [
