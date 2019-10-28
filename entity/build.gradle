@@ -1,8 +1,9 @@
-apply plugin: 'java-library'
+apply plugin: 'kotlin-spring'
 apply plugin: 'io.spring.dependency-management'
 
 dependencies {
     implementation libs.string_utils
-
+    implementation libs.kotlin
+    
     testImplementation libs.unit_tests
 }
