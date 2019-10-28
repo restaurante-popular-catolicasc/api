@@ -1,3 +1,4 @@
+apply plugin: 'kotlin-spring'
 apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
 
@@ -8,6 +9,7 @@ dependencies {
     implementation libs.rest
     implementation libs.spring_boot
     implementation libs.log
+    implementation libs.kotlin
 
     testImplementation libs.integration_test
     testImplementation libs.unit_tests

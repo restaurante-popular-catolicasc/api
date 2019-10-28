@@ -1,4 +1,4 @@
-apply plugin: 'java-library'
+apply plugin: 'kotlin-spring'
 apply plugin: 'io.spring.dependency-management'
 
 ext.moduleName = 'restaurantepopular.usecase'
@@ -6,6 +6,7 @@ ext.moduleName = 'restaurantepopular.usecase'
 dependencies {
 	implementation(project(':entity'))
     implementation libs.string_utils
+    implementation libs.kotlin
 
     testImplementation libs.unit_tests
 }

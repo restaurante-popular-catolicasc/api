@@ -1,10 +1,12 @@
-apply plugin: 'java-library'
+apply plugin: 'kotlin-spring'
+apply plugin: 'kotlin-jpa'
 apply plugin: 'io.spring.dependency-management'
 
 dependencies {
     implementation project(":usecase")
     implementation project(":entity")
     implementation libs.database_initialisation
-
+    implementation libs.kotlin
+    
     testImplementation libs.unit_tests
 }
