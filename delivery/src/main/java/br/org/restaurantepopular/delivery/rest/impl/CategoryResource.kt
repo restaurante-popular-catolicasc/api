@@ -25,7 +25,9 @@ constructor(
     private val deleteCategoryUseCase: DeleteCategoryUseCase
 ) : ICategoryResource {
 
-    override fun getCategoryById(@PathVariable("id") id: String) = useCaseExecutor(
+    override fun getCategoryById(
+        @PathVariable("id") id: String
+    ) = useCaseExecutor(
         useCase = getCategoryByIdUseCase,
         requestDto = id,
         requestConverter = { it },
@@ -33,7 +35,9 @@ constructor(
     )
 
 
-    override fun createCategory(@RequestBody categoryDTO: CategoryDTO) = useCaseExecutor(
+    override fun createCategory(
+        @RequestBody categoryDTO: CategoryDTO
+    ) = useCaseExecutor(
         useCase = createCategoryUseCase,
         requestDto = categoryDTO,
         requestConverter = { it.toCategory() },
@@ -55,13 +59,14 @@ constructor(
         useCase = listCategoriesUseCase,
         responseConverter = { it.map(Category::toCategoryDto) })
 
-    override fun deleteCategory(@PathVariable("id") id: String) =
-        useCaseExecutor(
-            useCase = deleteCategoryUseCase,
-            requestDto = id,
-            requestConverter = { it },
-            responseConverter = { ResponseEntity<Unit>(HttpStatus.NO_CONTENT) }
-        )
+    override fun deleteCategory(
+        @PathVariable("id") id: String
+    ) = useCaseExecutor(
+        useCase = deleteCategoryUseCase,
+        requestDto = id,
+        requestConverter = { it },
+        responseConverter = { ResponseEntity<Unit>(HttpStatus.NO_CONTENT) }
+    )
 
 }
 

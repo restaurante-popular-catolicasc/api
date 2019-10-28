@@ -77,19 +77,6 @@ class CategoryIntegrationTest {
     }
 
     @Test
-    fun shouldReturn200AndCategoryList_whenRetrievingCategoriesWith2Registers() {
-        createCategory("Arroz", "Arroz Branco", CategoryDTO::class.java)
-        createCategory("Feijão", "Feijão carioca", CategoryDTO::class.java)
-
-        val retrieveResponse = retrieveCategory("", List::class.java)
-        val responseDTO = retrieveResponse.body
-
-        assertEquals(HttpStatus.OK, retrieveResponse.statusCode)
-        assertNotNull(responseDTO)
-        assertEquals(2, responseDTO!!.size)
-    }
-
-    @Test
     fun shouldReturn204_whenTryingToDeleteExistentCategory_byID() {
         val createResponse = createCategory("Feijão", "Feijão carioca", CategoryDTO::class.java)
         val categoryID = createResponse.body!!.id
@@ -121,7 +108,6 @@ class CategoryIntegrationTest {
     ): ResponseEntity<T> {
 
         val category = CategoryDTO(
-            id = UUID.randomUUID().toString(),
             name = name,
             description = description
         )

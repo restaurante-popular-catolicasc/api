@@ -1,6 +1,8 @@
 package br.org.restaurantepopular.data_db.repository.category
 
-import br.org.restaurantepopular.data_db.mapper.CategoryEntityMapper
+import br.org.restaurantepopular.data_db.entity.CategoryEntity
+import br.org.restaurantepopular.data_db.mapper.toCategory
+import br.org.restaurantepopular.data_db.mapper.toCategoryEntity
 import br.org.restaurantepopular.entity.Category
 import br.org.restaurantepopular.usecase.category.ICategoryRepository
 import br.org.restaurantepopular.usecase.core.exception.NotFoundException
@@ -10,9 +12,7 @@ class CategoryRepository(
 ) : ICategoryRepository {
 
     override fun save(category: Category): Category {
-        return CategoryEntityMapper.toCategory(
-            categoryDAO.save(CategoryEntityMapper.toCategoryEntity(category))
-        )
+        return categoryDAO.save(category.toCategoryEntity()).toCategory()
     }
 
     @Throws(NotFoundException::class)
@@ -20,20 +20,20 @@ class CategoryRepository(
         if (!categoryDAO.existsById(category.id!!))
             throw NotFoundException(String.format("Not found a category with this %s ID", category.id))
 
-        categoryDAO.save(CategoryEntityMapper.toCategoryEntity(category))
+        categoryDAO.save(category.toCategoryEntity())
     }
 
     override fun listCategories(): List<Category> {
         return categoryDAO
             .findAll()
-            .map(CategoryEntityMapper::toCategory)
+            .map(CategoryEntity::toCategory)
     }
 
     @Throws(NotFoundException::class)
     override fun findById(id: String): Category {
         val categoryOptional =
             categoryDAO.findById(id)
-                .map(CategoryEntityMapper::toCategory)
+                .map(CategoryEntity::toCategory)
 
         if (categoryOptional.isEmpty)
             throw NotFoundException(String.format("Not found a category with this %s ID", id))

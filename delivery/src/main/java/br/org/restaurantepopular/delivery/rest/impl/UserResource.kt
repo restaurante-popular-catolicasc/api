@@ -23,35 +23,34 @@ constructor(
     private val deleteUserUseCase: DeleteUserUseCase
 ) : IUserResource {
 
-    override fun getUserById(@PathVariable("id") id: String): CompletionStage<UserDTO> {
-        return useCaseExecutor(
-            useCase = getUserByIdUseCase,
-            requestDto = id,
-            requestConverter = { id },
-            responseConverter = { it.toUserDTO() }
-        )
-    }
+    override fun getUserById(
+        @PathVariable("id") id: String
+    ) = useCaseExecutor(
+        useCase = getUserByIdUseCase,
+        requestDto = id,
+        requestConverter = { id },
+        responseConverter = { it.toUserDTO() }
+    )
 
-    override fun createUser(@RequestBody userDTO: UserDTO): CompletionStage<ResponseEntity<UserDTO>> {
-        return useCaseExecutor(
+    override fun createUser(
+        @RequestBody userDTO: UserDTO
+    ) =
+        useCaseExecutor(
             useCase = createUserUseCase,
             requestDto = userDTO,
             requestConverter = { it.toUser() },
             responseConverter = { ResponseEntity(it.toUserDTO(), HttpStatus.CREATED) }
         )
-    }
 
     override fun updateUser(
         @PathVariable("id") id: String,
         @RequestBody userDTO: UserDTO
-    ): CompletionStage<ResponseEntity<Unit>> {
-        return useCaseExecutor(
-            useCase = updateUserUseCase,
-            requestDto = userDTO.apply { this.id = id },
-            requestConverter = { it.toUser() },
-            responseConverter = { ResponseEntity<Unit>(HttpStatus.OK) }
-        )
-    }
+    ) = useCaseExecutor(
+        useCase = updateUserUseCase,
+        requestDto = userDTO.apply { this.id = id },
+        requestConverter = { it.toUser() },
+        responseConverter = { ResponseEntity<Unit>(HttpStatus.OK) }
+    )
 
     override fun listUsers(): CompletionStage<List<UserDTO>> {
         return useCaseExecutor(
@@ -60,12 +59,12 @@ constructor(
         )
     }
 
-    override fun deleteUser(@PathVariable("id") id: String): CompletionStage<ResponseEntity<Unit>> {
-        return useCaseExecutor(
-            useCase = deleteUserUseCase,
-            requestDto = id,
-            requestConverter = { requestDTO: String -> requestDTO },
-            responseConverter = { ResponseEntity<Unit>(HttpStatus.NO_CONTENT) }
-        )
-    }
+    override fun deleteUser(
+        @PathVariable("id") id: String
+    ) = useCaseExecutor(
+        useCase = deleteUserUseCase,
+        requestDto = id,
+        requestConverter = { requestDTO: String -> requestDTO },
+        responseConverter = { ResponseEntity<Unit>(HttpStatus.NO_CONTENT) }
+    )
 }
